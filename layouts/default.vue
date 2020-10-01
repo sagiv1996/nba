@@ -64,7 +64,13 @@
 export default {
   mounted() {
     const theme = localStorage.getItem("useDarkTheme");
-    this.$vuetify.theme.dark = theme === true;
+    if (theme) {
+        if (theme == "true") {
+            this.$vuetify.theme.dark = true;
+        } else {
+            this.$vuetify.theme.dark = false;
+        }
+    }
   },
   data() {
     return {
