@@ -10,9 +10,9 @@
     </v-img>
     <v-card-text>
       <v-list>
-        <v-list-item v-for="(oneTeam, key) in team" :key="oneTeam.id" v-show="key != 'id'">
+        <v-list-item v-for="(item, key) in team" :key="item.id" v-show="key != 'id'">
           <v-list-item-title
-            >{{ key.replace("_", " ") }}: {{ oneTeam }}</v-list-item-title
+            >{{ key.replace("_", " ") }}: {{ item }}</v-list-item-title
           >
         </v-list-item>
         <v-list-item v-if="img">
@@ -30,9 +30,16 @@
 
 <script>
 export default {
-  async asyncData({ $axios, params }) {
-    const team = await $axios.$get(`teams/${params.id}`);
+  async asyncData({ $axios, params, redirect }) {
+    try {
+      const team = await $axios.$get(`teams/${params.id}`);
     return { team };
+    } catch (error) {
+      if (err.response.status === 404) {
+        return redirect("/team");
+      }
+    }
+    
   },
   data: () => ({
     img: null,

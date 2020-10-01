@@ -13,14 +13,13 @@
     <v-card-text>
       <v-list>
         <v-list-item
-          v-for="(onePlayer, key) in player"
-          :key="onePlayer.id"
-          v-show="onePlayer && key != 'team' && key != 'id'"
+          v-for="(item, key) in player"
+          :key="key"
+          v-show="item && key != 'team' && key != 'id'"
         >
-          <v-list-title
-            >{{ key.replace("_", " ") }}: {{ onePlayer }}</v-list-title
-          >
+          <v-list-title>{{ key.replace("_", " ") }}: {{ item }}</v-list-title>
         </v-list-item>
+
         <v-list-item>
           <v-list-title>team: {{ player.team.full_name }}</v-list-title>
           <v-list-tile-action>
@@ -29,8 +28,7 @@
             </v-btn>
           </v-list-tile-action>
         </v-list-item>
-
-          <v-list-item v-if="img">
+        <v-list-item v-if="img">
           <v-list-title>share</v-list-title>
           <v-list-tile-action>
             <v-btn icon :href="share()" target="_top">
@@ -45,9 +43,17 @@
 
 <script>
 export default {
-  async asyncData({ $axios, params }) {
-    const player = await $axios.$get(`players/${params.id}`);
-    return { player };
+  async asyncData({ $axios, params, redirect }) {
+    try {
+      const player = await $axios.get(`players/${params.id}`);
+      return { player: player.data };
+    } catch (err) {
+      if (err.response.status === 404) {
+        return redirect("/player");
+      }
+    }
+
+    console.log(player.status);
   },
   data: () => ({
     img: null,
@@ -60,10 +66,9 @@ export default {
   },
   methods: {
     share() {
-        const url = window.location.href;
+      const url = window.location.href;
       const text = "Given that I want to share with you";
       return `https://wa.me/?text=${text + " " + url}`;
-      
     },
   },
 };
