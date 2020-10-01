@@ -1,0 +1,55 @@
+<template>
+  <v-card>
+    <v-img
+      :src="img"
+      height="50vh"
+      contain
+      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
+      class="white--text align-end"
+      ><v-card-title v-text="team.full_name" />
+    </v-img>
+    <v-card-text>
+      <v-list>
+        <v-list-item v-for="(oneTeam, key) in team" :key="oneTeam.id" v-show="key != 'id'">
+          <v-list-item-title
+            >{{ key.replace("_", " ") }}: {{ oneTeam }}</v-list-item-title
+          >
+        </v-list-item>
+        <v-list-item v-if="img">
+          <v-list-title>share</v-list-title>
+          <v-list-tile-action>
+            <v-btn icon :href="share()" target="_top">
+              <v-icon>mdi-share</v-icon>
+            </v-btn>
+          </v-list-tile-action>
+        </v-list-item>
+      </v-list>
+    </v-card-text>
+  </v-card>
+</template>
+
+<script>
+export default {
+  async asyncData({ $axios, params }) {
+    const team = await $axios.$get(`teams/${params.id}`);
+    return { team };
+  },
+  data: () => ({
+    img: null,
+  }),
+  async mounted() {
+    const img = await this.$axios.$get(
+      `https://api.unsplash.com/photos/random/?client_id=s0-HwCp9WRrwWwxz1T9agtF9NXinfrRcfCN2BDdC7S8&per_page=1&&query=basketball`
+    );
+    this.img = img.urls.small;
+  },
+  methods: {
+    share() {
+        const url = window.location.href;
+      const text = "Given that I want to share with you";
+      return `https://wa.me/?text=${text + " " + url}`;
+      
+    },
+  },
+};
+</script>
