@@ -74,6 +74,11 @@ export default {
   oneSignal: {
     init: {
       appId: '55d55b47-32bb-460b-bc05-72869a3b026e',
-    }
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+          disable: false
+      }
+    },
+    
   }
 }
