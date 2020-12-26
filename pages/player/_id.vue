@@ -31,6 +31,7 @@
         <v-list-item v-if="img">
           <v-list-title>share</v-list-title>
           <v-list-tile-action>
+            <share-button />
             <v-btn icon :href="share()" target="_top">
               <v-icon>mdi-share</v-icon>
             </v-btn>

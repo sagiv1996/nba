@@ -32,9 +32,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer />
       <v-avatar>
-        <router-link to="/">
-          <v-img :src="$icon(512)" alt="icon" />
-        </router-link>
+          <v-img :src="$icon(512)" alt="icon"/>
       </v-avatar>
     </v-app-bar>
     <v-main>
