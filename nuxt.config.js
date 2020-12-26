@@ -42,7 +42,6 @@ export default {
     '@nuxtjs/onesignal',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    "@nuxtjs/dotenv",
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -75,7 +74,7 @@ export default {
   },
   oneSignal: {
     init: {
-      appId: process.env.oneSignalId,
+      appId: '55d55b47-32bb-460b-bc05-72869a3b026e',
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
           disable: false

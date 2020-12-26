@@ -2,7 +2,6 @@
   <v-card>
     <v-card-title class="justify-center">
       Welcome to data about the nba
-      {{hola}}
     </v-card-title>
     <v-card-text class="text-center">
       <v-row align="center">
@@ -37,11 +36,6 @@ export default {
       {text: "Saves data", icon: "mdi-access-point-network"},
       {text: "Easily share", icon: "mdi-share-variant"}
     ]
-  }),
-    computed: {
-    hola() {
-      return process.env.oneSignalId;
-    },
-  }
+  })
 };
 </script>
