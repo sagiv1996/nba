@@ -38,6 +38,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/onesignal',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
@@ -68,6 +69,11 @@ export default {
       name: "get data from nba basketball",
       short_name: "nba-app",
       start_url: "/",      
+    }
+  },
+  oneSignal: {
+    init: {
+      appId: '55d55b47-32bb-460b-bc05-72869a3b026e',
     }
   }
 }
