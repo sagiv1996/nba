@@ -18,9 +18,7 @@
         <v-list-item v-if="img">
           <v-list-title>share</v-list-title>
           <v-list-tile-action>
-            <v-btn icon :href="share()" target="_top">
-              <v-icon>mdi-share</v-icon>
-            </v-btn>
+            <share-button />
           </v-list-tile-action>
         </v-list-item>
       </v-list>
@@ -49,14 +47,6 @@ export default {
       `https://api.unsplash.com/photos/random/?client_id=s0-HwCp9WRrwWwxz1T9agtF9NXinfrRcfCN2BDdC7S8&per_page=1&&query=basketball`
     );
     this.img = img.urls.small;
-  },
-  methods: {
-    share() {
-        const url = window.location.href;
-      const text = "Given that I want to share with you";
-      return `https://wa.me/?text=${text + " " + url}`;
-      
-    },
   },
 };
 </script>
