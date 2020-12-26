@@ -31,14 +31,15 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer />
-      <v-avatar
-      >
-        <img :src="$icon(512)" alt="icon">
+      <v-avatar>
+        <router-link to="/">
+          <v-img :src="$icon(512)" alt="icon" />
+        </router-link>
       </v-avatar>
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt v-if="$nuxt.isOnline"/>
+        <nuxt v-if="$nuxt.isOnline" />
         <v-alert type="error" :value="true" icon="mdi-wifi-off" v-else>
           There is no network connection
         </v-alert>
@@ -65,11 +66,11 @@ export default {
   mounted() {
     const theme = localStorage.getItem("useDarkTheme");
     if (theme) {
-        if (theme == "true") {
-            this.$vuetify.theme.dark = true;
-        } else {
-            this.$vuetify.theme.dark = false;
-        }
+      if (theme == "true") {
+        this.$vuetify.theme.dark = true;
+      } else {
+        this.$vuetify.theme.dark = false;
+      }
     }
   },
   data() {
