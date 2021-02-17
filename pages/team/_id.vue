@@ -1,31 +1,15 @@
-<template>
-  <v-card>
-    <v-img
-      :src="img"
-      height="50vh"
-      contain
-      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
-      class="white--text align-end"
-      ><v-card-title v-text="team.full_name" />
-    </v-img>
-    <v-card-text>
-      <v-list>
-        <v-list-item v-for="(item, key) in team" :key="item.id" v-show="key != 'id'">
-          <v-list-item-title
-            >{{ key.replace("_", " ") }}: {{ item }}</v-list-item-title
-          >
-        </v-list-item>
-        <v-list-item v-if="img">
-          <v-list-title>share</v-list-title>
-          <v-list-tile-action>
-            <share-button />
-          </v-list-tile-action>
-        </v-list-item>
-      </v-list>
-    </v-card-text>
-  </v-card>
+<template lang="pug">
+  v-card 
+    v-img(:src="img" height="50vh" contain gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)" class="white--text align-end"  )
+    v-card-text 
+      v-list
+        v-v-list-item(v-for="(item, key) in team" :key="item.id" v-show="key != 'id'")
+        v-list-item-title {{ key.replace("_", " ") }}: {{ item }}
+        v-v-list-item( v-if="img" )
+          v-list-title share
+          v-list-item-action
+            share-button
 </template>
-
 <script>
 export default {
   async asyncData({ $axios, params, redirect }) {

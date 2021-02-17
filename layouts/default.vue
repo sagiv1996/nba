@@ -1,62 +1,28 @@
-<template>
-  <v-app>
-    <v-navigation-drawer v-model="drawer" app bottom>
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-          nuxt
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item @click="toggleTheme">
-          <v-list-item-action>
-            <v-icon>mdi-theme-light-dark</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title> dark mode </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-spacer />
-      <v-avatar>
-          <v-img :src="$icon(512)" alt="icon"/>
-      </v-avatar>
-    </v-app-bar>
-    <v-main>
-      <v-container>
-        <nuxt v-if="$nuxt.isOnline" />
-        <v-alert type="error" :value="true" icon="mdi-wifi-off" v-else>
-          There is no network connection
-        </v-alert>
-      </v-container>
-    </v-main>
-    <v-footer app absolute inset>
-      <span>
-        The data on the site is educated from
-        <v-btn
-          text
-          href="https://rapidapi.com/theapiguy/api/free-nba"
-          target="_blank"
-          link
-          small
-          >here</v-btn
-        >
-      </span>
-    </v-footer>
-  </v-app>
+<template lang="pug">
+  v-app 
+    v-navigation-drawer( v-model="drawer" app bottom )
+      v-list
+        v-list-item(v-for="(item, i) in items" :key="i" :to="item.to" router exact nuxt)
+          v-list-item-action
+            v-icon( v-text="item.icon")
+          v-list-item-content
+            v-list-item-title(v-text="item.title")
+        v-list-item(@click="toggleTheme")
+          v-list-item-action
+            v-icon mdi-theme-light-dark
+          v-list-item-content
+            v-list-item-title dark mode
+    v-app-bar( app )
+      v-app-bar-nav-icon( @click.stop="drawer = !drawer")
+      v-spacer
+      v-avatar
+        v-img( :src="$icon(512)" alt="icon" )
+    v-main
+      v-container
+        nuxt(v-if="$nuxt.isOnline")
+        v-alert( type="error" :value="true" icon="mdi-wifi-off" v-else )
+    v-footer( app absolute inset) The data on the site is educated from
+      v-btn( text href="https://rapidapi.com/theapiguy/api/free-nba" target="_blank" link small) here
 </template>
 
 <script>

@@ -1,35 +1,10 @@
-<template>
-<v-data-table
-  :headers="headers"
-  :items.sync="players.data"
-  @pagination="pagination"
-  :server-items-length="players.meta.itemsLength"
-  :loading="load"
-  fixed-header
-  multi-sort
-  :footer-props="{
-    itemsPerPageOptions: [10,50,100, 250, 500]
-  }"
-  :height="!Boolean(search)? '530': 'auto'"
-  :search="search"
->
-  <template v-slot:top>
-    <v-text-field
-      label="search"
-      v-model="search"
-      hint="Note! The search will be performed only on data already loaded. To search all the data, press Enter"
-      @keyup.enter="searchStr"
-      clearable
-      prepend-icon="mdi-search-web"
-    ></v-text-field>
-  </template>
-
-  <template v-slot:[`item.id`] ="{item}">
-     <v-btn icon :to=" 'player/' + item.id" nuxt>
-         <v-icon>mdi-export</v-icon>
-     </v-btn>
-  </template>
-</v-data-table>
+<template lang="pug">
+  v-data-table( :headers="headers" :items.sync="players.data" @pagination="pagination" :server-items-length="players.meta.itemsLength" :loading="load" fixed-header multi-sort :footer-props="{itemsPerPageOptions: [10,50,100, 250, 500]}" :height="!Boolean(search)? '530': 'auto'" :search="search")
+    template(v-slot="top")
+      v-text-v-text-field( label="search" v-model="search" hint="Note! The search will be performed only on data already loaded. To search all the data, press Enter"  @keyup.enter="searchStr" clearable prepend-icon="mdi-search-web")
+    template( v-slot:[`item.id`] ="{item}")
+      v-btn(icon :to="'player/'+item.id" nuxt)
+        v-icon mdi-export
 </template>
 
 <script>

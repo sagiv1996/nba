@@ -1,12 +1,7 @@
-<template>
-<div>
-    <v-btn icon :href="suppotShare ? undefined : href" @click="share"
-    >
-    <v-icon v-if="suppotShare">mdi-share-variant-outline</v-icon>
-    <v-icon v-else>mdi-whatsapp</v-icon>
-  </v-btn>
-</div>
-  
+<template lang="pug">
+v-btn( icon :href="suppotShare ? undefined : href" @click="share" )
+    v-icon( v-if="suppotShare") mdi-share-variant-outline
+    v-icon(v-else) mdi-whatsapp
 </template>
 
 <script>

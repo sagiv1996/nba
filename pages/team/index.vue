@@ -1,34 +1,13 @@
-<template>
-  <div>
-    <v-data-table
-      :headers="headers"
-      :items="teams.data"
-      :server-items-length="teams.meta.itemsLength"
-      :search="search"
-      fixed-header
-      multi-sort
-      :footer-props="{
-        itemsPerPageOptions: [10, 15, -1],
-      }"
-      :height="!Boolean(search)? '530': 'auto'"
-    >
-    
-      <template v-slot:top>
-        <v-text-field label="search" v-model.lazy="search" clearable prepend-icon="mdi-search-web"></v-text-field>
-      </template>
-      <template v-slot:[`item.id`] ="{item}">
-          <v-btn icon>
-              <v-btn icon :to="'team/'+item.id" nuxt>
-         <v-icon>mdi-export</v-icon>
-     </v-btn>
-          </v-btn>
-      </template>
-    </v-data-table>
-  </div>
+<template lang="pug">
+  v-data-table( :headers="headers" :items="teams.data" :server-items-length="teams.meta.itemsLength" :search="search" fixed-header multi-sort :footer-props="{itemsPerPageOptions: [10, 15, -1],}" :height="!Boolean(search)? '530': 'auto'")
+    template(v-slot="top")
+      v-text-field( label="search" v-model.lazy="search" clearable prepend-icon="mdi-search-web")
+    template( v-slot:[`item.id`] ="{item}")
+      v-btn(icon :to="'team/'+item.id" nuxt)
+        v-icon mdi-export
 </template>
-
 <script>
-export default {
+export default { 
   async asyncData({ $axios }) {
     const teams = await $axios.$get("teams");
     return { teams };
