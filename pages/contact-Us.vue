@@ -6,7 +6,6 @@ v-card(elevation="14")
       lazy-validation,
       ref="form",
       data-netlify="true",
-      data-netlify-recaptcha="true",
       name="contact",
       method="POST",
       data-netlify-honeypot="bot-field",
