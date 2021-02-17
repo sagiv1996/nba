@@ -10,10 +10,10 @@ v-card(elevation="14")
       name="contact",
       method="POST",
       data-netlify-honeypot="bot-field",
-      @submit.prevent="sendForm"
+      @submit.prevent="handleSubmit"
     )
       v-text-field(
-        v-model="email",
+        v-model="form.email",
         name="contact",
         clearable,
         :rules="[emptyRules, emailRules, counterRules(25, email)]",
@@ -31,7 +31,7 @@ v-card(elevation="14")
         value="email" 
       )
       v-textarea(
-        v-model="text",
+        v-model="form.text",
         clearable,
         rows="1",
         auto-grow,
@@ -44,7 +44,7 @@ v-card(elevation="14")
         shaped,
         outlined,
         prepend-icon="mdi-message-text-outline mdi-flip-h",
-        name="contact",
+        name="text",
         ref="e"
         value="text"
       )
@@ -52,13 +52,16 @@ v-card(elevation="14")
   v-card-actions
     v-btn(@click="restForm") rest the form
     v-spacer 
-    v-btn(@click="sendForm", type="submit") submit the form
+    v-btn(@click="handleSubmit", type="submit") submit the form
 </template>
 <script>
 export default {
   data: () => ({
-    email: null,
+      form:{
+email: null,
     text: null,
+      },
+    
     emptyRules: (v) => !!v || "Field is required",
     emailRules: (v) =>
       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
@@ -73,32 +76,21 @@ export default {
     restForm() {
       this.$refs.form.reset();
     },
-    sendForm() {
-      if(this.$refs.form.validate()){
-          const axiosConfig = {
-        header: { "Content-Type": "application/x-www-form-urlencoded" }
-      };
-
-
-      this.$axios.post(
-        "/",
-        this.encode({
-          "form-name": "contact",
-          ...this.form
-        }),
-        axiosConfig
-      );
-
-
-      }
+    handleSubmit() {
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encode({
+      "form-name": 'contact',
+      ...this.form
+    })
+  }).then(() => alert("hoof!")).catch(error => alert(error))
     },
     encode(data) {
-      return Object.keys(data)
-        .map(
-          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join("&");
-    },
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&")
+  }
   },
 };
 </script>
