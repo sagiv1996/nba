@@ -6,7 +6,7 @@ v-card(elevation="14")
       lazy-validation,
       ref="form",
       data-netlify="true",
-      data-netlify-recaptcha="true"
+      data-netlify-recaptcha="true",
       name="contact",
       method="POST",
       data-netlify-honeypot="bot-field",
@@ -27,8 +27,8 @@ v-card(elevation="14")
         type="email",
         prepend-icon="mdi-email-check-outline",
         outlined,
-        validate-on-blur
-        value="email" 
+        validate-on-blur,
+        value="email"
       )
       v-textarea(
         v-model="form.text",
@@ -45,7 +45,7 @@ v-card(elevation="14")
         outlined,
         prepend-icon="mdi-message-text-outline mdi-flip-h",
         name="text",
-        ref="e"
+        ref="e",
         value="text"
       )
     v-divider 
@@ -57,11 +57,11 @@ v-card(elevation="14")
 <script>
 export default {
   data: () => ({
-      form:{
-email: null,
-    text: null,
-      },
-    
+    form: {
+      email: null,
+      text: null,
+    },
+
     emptyRules: (v) => !!v || "Field is required",
     emailRules: (v) =>
       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
@@ -77,24 +77,30 @@ email: null,
       this.$refs.form.reset();
     },
     handleSubmit() {
-  fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: this.encode({
-      "form-name": 'contact',
-      ...this.form
-    })
-    
-  }).then(() => this.$swal('we got your messege', `we back to ${form.email} mail`, success)).catch(error => this.$swal('error', error, error))
-
-  
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: this.encode({
+          "form-name": "contact",
+          ...this.form,
+        }),
+      })
+        .then(() =>
+          this.$swal(
+            "we got your messege",
+            `we back to ${form.email} mail`,
+            'success'
+          )
+        )
+        .catch((error) => this.$swal("error", error, 'error'));
     },
     encode(data) {
-    return Object.keys(data)
-        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-        .join("&")
-  }
-
+      return Object.keys(data)
+        .map(
+          (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+        )
+        .join("&");
+    },
   },
 };
 </script>
