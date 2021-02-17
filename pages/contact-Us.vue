@@ -88,7 +88,7 @@ export default {
         .then(() =>
           this.$swal(
             "we got your messege",
-            `we back to ${form.email} mail`,
+            `we back to ${this.form.email} mail`,
             'success'
           )
         )
