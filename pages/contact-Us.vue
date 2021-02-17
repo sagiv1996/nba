@@ -92,9 +92,9 @@ export default {
             `we back to ${this.form.email} mail`,
             'success'
           )
-          this.$refs.form.disabled = true;
-          this.$refs.btnRestForm.disabled = true;
-          this.$refs.btnRestForm.disabled = true;
+          //this.$refs.form.disabled = true;
+          //this.$refs.btnRestForm.disabled = true;
+          //this.$refs.btnRestForm.disabled = true;
           }
         )
         .catch((error) => this.$swal("error", error, 'error'));
