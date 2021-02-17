@@ -36,7 +36,7 @@ v-card(elevation="14")
         auto-grow,
         :rules="[emptyRules, counterRules(255, form.text)]",
         required,
-        label="test field",
+        label="text field",
         counter="255",
         hint="the body messege.",
         filled,
@@ -76,7 +76,8 @@ export default {
       this.$refs.form.reset();
     },
     handleSubmit() {
-      fetch("/", {
+        if (this.$refs.form.validate()){
+            fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: this.encode({
@@ -84,14 +85,18 @@ export default {
           ...this.form,
         }),
       })
-        .then(() =>
+        .then(() =>{
           this.$swal(
             "we got your messege",
             `we back to ${this.form.email} mail`,
             'success'
           )
+          this.$refs.form.disabled = true;
+          }
         )
         .catch((error) => this.$swal("error", error, 'error'));
+        }
+      
     },
     encode(data) {
       return Object.keys(data)
