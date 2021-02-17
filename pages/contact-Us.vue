@@ -5,7 +5,8 @@ v-card(elevation="14")
     v-form(
       lazy-validation,
       ref="form",
-      netlify,
+      data-netlify="true",
+      data-netlify-recaptcha="true"
       name="contact",
       method="POST",
       data-netlify-honeypot="bot-field",
@@ -13,7 +14,7 @@ v-card(elevation="14")
     )
       v-text-field(
         v-model="email",
-        name="email",
+        name="contact",
         clearable,
         :rules="[emptyRules, emailRules, counterRules(25, email)]",
         required,
@@ -27,6 +28,7 @@ v-card(elevation="14")
         prepend-icon="mdi-email-check-outline",
         outlined,
         validate-on-blur
+        value="email" 
       )
       v-textarea(
         v-model="text",
@@ -42,8 +44,9 @@ v-card(elevation="14")
         shaped,
         outlined,
         prepend-icon="mdi-message-text-outline mdi-flip-h",
-        name="text",
+        name="contact",
         ref="e"
+        value="text"
       )
     v-divider 
   v-card-actions
@@ -80,7 +83,7 @@ export default {
       this.$axios.post(
         "/",
         this.encode({
-          "form-name": "ask-question",
+          "form-name": "contact",
           ...this.form
         }),
         axiosConfig
