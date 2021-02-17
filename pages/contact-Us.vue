@@ -80,17 +80,21 @@ email: null,
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encode({
+    body: this.encode({
       "form-name": 'contact',
       ...this.form
     })
+    
   }).then(() => alert("hoof!")).catch(error => alert(error))
+
+  
     },
     encode(data) {
     return Object.keys(data)
         .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
         .join("&")
   }
+
   },
 };
 </script>
