@@ -29,6 +29,7 @@ v-card(elevation="14")
         validate-on-blur,
         value="email"
       )
+      span {{form.email}}
       v-textarea(
         v-model="form.text",
         clearable,
@@ -49,9 +50,9 @@ v-card(elevation="14")
       )
     v-divider 
   v-card-actions
-    v-btn(@click="restForm") rest the form
+    v-btn(@click="restForm" ref="btnRestForm") rest the form
     v-spacer 
-    v-btn(@click="handleSubmit", type="submit") submit the form
+    v-btn(@click="handleSubmit", type="submit" ref="btnSubmitForm") submit the form
 </template>
 <script>
 export default {
@@ -92,6 +93,8 @@ export default {
             'success'
           )
           this.$refs.form.disabled = true;
+          this.$refs.btnRestForm.disabled = true;
+          this.$refs.btnRestForm.disabled = true;
           }
         )
         .catch((error) => this.$swal("error", error, 'error'));
