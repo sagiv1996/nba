@@ -56,6 +56,11 @@ export default {
           title: "teams",
           to: "/team",
         },
+        {
+          icon:"mdi-contactless-payment",
+          title: "contact  us",
+          to: "contact-us"
+        }
       ],
     };
   },
