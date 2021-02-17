@@ -13,10 +13,11 @@ v-card(elevation="14")
     )
       v-text-field(
         v-model="form.email",
-        name="contact",
+        name="email",
         clearable,
         :rules="[emptyRules, emailRules, counterRules(25, form.email)]",
         required,
+        label="email field",
         autofocus,
         counter="25",
         filled,
