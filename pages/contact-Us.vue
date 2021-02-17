@@ -17,7 +17,6 @@ v-card(elevation="14")
         clearable,
         :rules="[emptyRules, emailRules, counterRules(25, form.email)]",
         required,
-        label="email field",
         autofocus,
         counter="25",
         filled,
@@ -29,7 +28,6 @@ v-card(elevation="14")
         validate-on-blur,
         value="email"
       )
-      span {{form.email}}
       v-textarea(
         v-model="form.text",
         clearable,
