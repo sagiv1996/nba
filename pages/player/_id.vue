@@ -1,6 +1,6 @@
 <template lang="pug">
   v-card
-    v-img( :src="img" contain  height="500vh" :alt="player.first_name + ' ' + player.last_name" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"  ) 
+    v-img( :src="img" contain  height="500" :alt="player.first_name + ' ' + player.last_name" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"  ) 
       v-card-title(v-text="player.first_name + ' ' + player.last_name")
     v-card-text 
       v-list
@@ -27,8 +27,6 @@ export default {
         return redirect("/player");
       }
     }
-
-    console.log(player.status);
   },
   data: () => ({
     img: null,

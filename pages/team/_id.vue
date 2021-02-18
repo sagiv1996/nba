@@ -3,12 +3,13 @@
     v-img(:src="img" height="50vh" contain gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)" class="white--text align-end"  )
     v-card-text 
       v-list
-        v-v-list-item(v-for="(item, key) in team" :key="item.id" v-show="key != 'id'")
-        v-list-item-title {{ key.replace("_", " ") }}: {{ item }}
-        v-v-list-item( v-if="img" )
-          v-list-title share
-          v-list-item-action
+        v-list-item( v-for="(item, key) in team" :key="item.id")
+          v-list-item-title {{key.replace('_', ' ')}} {{item}} 
+        v-list-item( v-if="img" )
+          v-list-item-title share 
+          v-list-item-action 
             share-button
+
 </template>
 <script>
 export default {
