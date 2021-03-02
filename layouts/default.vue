@@ -14,9 +14,10 @@
             v-list-item-title dark mode
     v-app-bar( app )
       v-app-bar-nav-icon( @click.stop="drawer = !drawer")
-      v-spacer
-      v-avatar
-        v-img( :src="$icon(512)" alt="icon" )
+      v-spacer        
+      v-btn( fab to='/' nuxt )
+        v-avatar( to="/")
+          v-img( :src="$icon(512)" alt="icon")      
     v-main
       v-container
         nuxt(v-if="$nuxt.isOnline")
