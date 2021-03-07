@@ -1,7 +1,7 @@
 <template lang="pug">
   v-data-table( :headers="headers" :items.sync="players.data" @pagination="pagination" :server-items-length="players.meta.itemsLength" :loading="load" multi-sort :footer-props="{itemsPerPageOptions: [10,50,100, 250, 500]}" :search="search")
-    template(v-slot="top")
-      v-text-v-text-field( label="search" v-model="search" hint="Note! The search will be performed only on data already loaded. To search all the data, press Enter"  @keyup.enter="searchStr" clearable prepend-icon="mdi-search-web")
+    template(v-slot:top)
+      v-text-field( label="search" v-model="search" hint="Note! The search will be performed only on data already loaded. To search all the data, press Enter"  @keyup.enter="searchStr" @change.stop="searchStr" clearable prepend-icon="mdi-search-web")
     template( v-slot:[`item.id`] ="{item}")
       v-btn(icon :to="'player/'+item.id" nuxt)
         v-icon mdi-export

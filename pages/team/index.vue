@@ -1,6 +1,6 @@
 <template lang="pug">
   v-data-table( :headers="headers" :items="teams.data" :server-items-length="teams.meta.itemsLength" :search="search" multi-sort :footer-props="{itemsPerPageOptions: [10, 15, -1],}")
-    template(v-slot="top")
+    template(v-slot:top)
       v-text-field( label="search" v-model.lazy="search" clearable prepend-icon="mdi-search-web")
     template( v-slot:[`item.id`] ="{item}")
       v-btn(icon :to="'team/'+item.id" nuxt)
