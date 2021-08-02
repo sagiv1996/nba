@@ -14,7 +14,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/onesignal": "^3.0.0-beta.16",
     "@nuxtjs/pwa": "^3.0.2",
-    "core-js": "^3.6.5",
+    "core-js": "^3.16.0",
     "nuxt": "^2.14.5",
     "pexels": "^1.0.1",
     "vue-sweetalert2": "^4.2.0"
