@@ -67,16 +67,6 @@ export default {
   },
 
   pwa:{
-    shortcuts: [
-      {
-   
-         name: "Shortcut name to show in the menu",
-   
-         description: "A description of what the shortcut does",
-   
-         url: "/player",
-      }
-    ],
     manifest:{
       name: "get data from nba basketball",
       short_name: "nba-app",
